@@ -5,7 +5,7 @@ import os
 from discover import interpret, evaluate
 
 
-_DEFAULT_DESTINATION = os.path.join('data', 'pubs')
+DEFAULT_DESTINATION = os.path.join('data', 'pubs')
 
 
 def parse_args():
@@ -14,7 +14,7 @@ def parse_args():
                         help='API Key for Microsoft Academic Search API')
     parser.add_argument('--config', default='config.json',
                         help='Configuration file')
-    parser.add_argument('--destination', default=_DEFAULT_DESTINATION,
+    parser.add_argument('--destination', default=DEFAULT_DESTINATION,
                         help='Destination of fetched publications')
     parser.add_argument('--count', default=1000, type=int,
                         help='Number of publications to discover per domain')
