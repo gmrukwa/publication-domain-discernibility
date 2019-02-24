@@ -4,7 +4,7 @@ import requests
 from discover.interpret import build_headers
 
 
-_QUERY_PATTERN = 'expr="{0}"' \
+_QUERY_PATTERN = 'expr={0}' \
                  '&model="{1}"' \
                  '&count={2}' \
                  '&offset={3}' \
