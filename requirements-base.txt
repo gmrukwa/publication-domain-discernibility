@@ -1,2 +1,3 @@
 pdftotext
 requests
+tqdm
