@@ -1,6 +1,50 @@
 # publication-domain-discernibility
 Analysis of publication domain by statistical analysis of word counts.
 
+
+# Instruction
+
+
+## Dataset Gathering
+
+First, publications need to be found using the Microsoft Academic Knowledge API.
+This is a responsibility of the `discover` package.
+
+1) Specify domains of interest within `config.json`
+
+```JSON
+{
+  ...
+  "DOMAINS": [
+    "cancer",
+    "another_domain"
+  ]
+}
+```
+
+2) Find your Microsoft Academic Knowledge API key [here](https://labs.cognitive.microsoft.com/en-us/subscriptions).
+You should copy **Key 1** and use it in the next step.
+3) Discover relevant publications with `discover` package. Provide number of
+papers around 5 times greater than the number you actually want to download -
+not all papers are downloadable.
+
+```bash
+python -m discover --api-key <your-copied-key> --count <count-of-papers>
+```
+
+You can find discovery files within `data/pubs` directory, named as
+`<domain_name>.json`.
+
+4) Download publications as PDF files via `download` module. Here you provide an
+actual number of papers to download.
+
+```bash
+python -m download --count <count-of-papers>
+```
+
+You can find downloaded publications within `data/pubs/<domain-name>` directory,
+named as `<publication-title>.pdf`.
+
 # Technical Feasibility Check
 
 Feasibility was checked more-or-less during the topic selection classes.
