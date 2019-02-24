@@ -5,5 +5,8 @@
     "INTERPRET_URL": "https://api.labs.cognitive.microsoft.com/academic/v1.0/interpret",
     "MODEL_NAME": "latest",
     "TIMEOUT": 1000
-  }
+  },
+  "DOMAINS": [
+    "cancer"
+  ]
 }
