@@ -45,6 +45,15 @@ python -m download --count <count-of-papers>
 You can find downloaded publications within `data/pubs/<domain-name>` directory,
 named as `<publication-title>.pdf`.
 
+5) Convert downloaded publications to TXT format via `convert` module.
+
+```bash
+python -m convert
+```
+
+You can find converted publications within `data/pubs/<domain-name>` directory,
+named as `<publication-title>.txt`.
+
 # Technical Feasibility Check
 
 Feasibility was checked more-or-less during the topic selection classes.
