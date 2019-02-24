@@ -34,7 +34,7 @@ def save_json(path: str, data):
 def main():
     args = parse_args()
     config = load_json(args.config)
-    os.makedirs(args.destination)
+    os.makedirs(args.destination, exist_ok=True)
     destination_pattern = os.path.join(args.destination, "{0}.json")
     for domain in config["DOMAINS"]:
         query = interpret.fetch_query(domain, config["API"], args.api_key)
