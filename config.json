@@ -1,7 +1,9 @@
 {
-  "API_AUTOCOMPLETE_MODE": false,
-  "API_EVALUATE_URL": "https://api.labs.cognitive.microsoft.com/academic/v1.0/evaluate",
-  "API_INTERPRET_URL": "https://api.labs.cognitive.microsoft.com/academic/v1.0/interpret",
-  "API_MODEL_NAME": "latest",
-  "API_TIMEOUT": 1000
+  "API": {
+    "AUTOCOMPLETE_MODE": false,
+    "EVALUATE_URL": "https://api.labs.cognitive.microsoft.com/academic/v1.0/evaluate",
+    "INTERPRET_URL": "https://api.labs.cognitive.microsoft.com/academic/v1.0/interpret",
+    "MODEL_NAME": "latest",
+    "TIMEOUT": 1000
+  }
 }
