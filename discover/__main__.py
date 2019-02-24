@@ -1,11 +1,8 @@
 import argparse
-import json
 import os
 
 from discover import interpret, evaluate
-
-
-DEFAULT_DESTINATION = os.path.join('data', 'pubs')
+from utils import load_json, save_json, DEFAULT_DESTINATION
 
 
 def parse_args():
@@ -19,16 +16,6 @@ def parse_args():
     parser.add_argument('--count', default=1000, type=int,
                         help='Number of publications to discover per domain')
     return parser.parse_args()
-
-
-def load_json(path: str):
-    with open(path) as infile:
-        return json.load(infile)
-
-
-def save_json(path: str, data):
-    with open(path, 'w') as outfile:
-        json.dump(data, outfile)
 
 
 def main():
