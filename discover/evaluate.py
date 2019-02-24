@@ -4,6 +4,11 @@ import requests
 from discover.interpret import build_headers
 
 
+_QUERY_PATTERN = 'expr="{0}"' \
+                 '&model="{1}"' \
+                 '&count={2}' \
+                 '&offset={3}' \
+                 '&attributes={4}'
 # according to: https://docs.microsoft.com/en-us/azure/cognitive-services/academic-knowledge/evaluatemethod
 # and: https://docs.microsoft.com/en-us/azure/cognitive-services/academic-knowledge/paperentityattributes
 _FIELDS = "Id,Ti,E,Y,AA.AuN"
@@ -11,17 +16,11 @@ _PAGINATION = 10
 
 
 def _build_query(expression, config, count: int = 1000, offset: int = 0):
-    str_value = '"{0}"'.format
-    make_param = '='.join
-    chain_params = '&'.join
-    query = chain_params([
-        make_param(["expr", str_value(expression)]),
-        make_param(["model", str_value(config["MODEL_NAME"])]),
-        make_param(["count", count]),
-        make_param(["offset", offset]),
-        make_param(["attributes", _FIELDS])
-    ])
-    return query
+    return _QUERY_PATTERN.format(expression,
+                                 config["MODEL_NAME"],
+                                 count,
+                                 offset,
+                                 _FIELDS)
 
 
 def request_papers(expression, config, key, count: int = 1000, offset: int = 0):

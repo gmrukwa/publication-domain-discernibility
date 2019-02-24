@@ -1,19 +1,22 @@
 import requests
 
+_QUERY_PATTERN = 'query="{0}"' \
+                 '&complete={1}' \
+                 '&count={2}' \
+                 '&offset={3}' \
+                 '&timeout={4}'\
+                 '&model="{5}"'
+_FIRST = 1
+_NO_OFFSET = 0
+
 
 def _build_query(domain_name, config):
-    str_value = '"{0}"'.format
-    make_param = '='.join
-    chain_params = '&'.join
-    query = chain_params([
-        make_param(["query", str_value(domain_name)]),
-        make_param(["complete", int(config["AUTOCOMPLETE_MODE"])]),
-        make_param(["count", 1]),
-        make_param(["offset", 0]),
-        make_param(["timeout", config["TIMEOUT"]]),
-        make_param(["model", str_value(config["MODEL_NAME"])])
-    ])
-    return query
+    return _QUERY_PATTERN.format(domain_name,
+                                 int(config["AUTOCOMPLETE_MODE"]),
+                                 _FIRST,
+                                 _NO_OFFSET,
+                                 config["TIMEOUT"],
+                                 config["MODEL_NAME"])
 
 
 def build_headers(key):
