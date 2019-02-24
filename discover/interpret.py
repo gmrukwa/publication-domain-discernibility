@@ -30,7 +30,7 @@ def _request_domain_interpretations(domain_name, config, key):
     request = requests.post(config["INTERPRET_URL"],
                             data=_build_query(domain_name, config),
                             headers=build_headers(key))
-    if not request.ok():
+    if not request.ok:
         raise RuntimeError('Domain {0} could not be parsed.'.format(domain_name))
 
     return request.json()

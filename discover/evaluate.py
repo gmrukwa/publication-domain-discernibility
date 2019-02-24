@@ -27,7 +27,7 @@ def request_papers(expression, config, key, count: int = 1000, offset: int = 0):
     request = requests.post(config["EVALUATE_URL"],
                             data=_build_query(expression, config, count, offset),
                             headers=build_headers(key))
-    if not request.ok():
+    if not request.ok:
         raise RuntimeError(
             'Expression {0} could not be parsed.'.format(expression))
 
