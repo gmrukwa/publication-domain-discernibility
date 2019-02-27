@@ -77,10 +77,12 @@ def main():
     for domain in tqdm(domain_lists, 'domain'):
         os.makedirs(domain_dir(domain), exist_ok=True)
         pattern = os.path.join(domain_dir(domain), '{0}.pdf')
+        allowed_title_len = 255 - len(pattern) + 3
         pubs = load_json(domain)
         queue = as_download_list(pubs["entities"], args.count)
         for title, url in tqdm(queue, 'publication', total=args.count):
-            download(url, pattern.format(title), not args.force)
+            filename = pattern.format(title[:min(len(title), allowed_title_len)])
+            download(url, filename, not args.force)
 
 
 if __name__ == '__main__':
