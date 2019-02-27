@@ -27,6 +27,8 @@ def is_downloadable(url: str):
         return False
     header = h.headers
     content_type = header.get('content-type')
+    if content_type is None:
+        return False
     if 'text' in content_type.lower():
         return False
     if 'html' in content_type.lower():
