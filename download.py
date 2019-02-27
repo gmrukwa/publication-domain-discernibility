@@ -15,6 +15,8 @@ def parse_args():
                         help='Source directory of domain articles lists')
     parser.add_argument('--count', default=1000, type=int,
                         help='Limits the number of downloaded papers')
+    parser.add_argument('--force', action='store_const', const=True,
+                        default=False, help='Force re-download')
     return parser.parse_args()
 
 
@@ -32,7 +34,9 @@ def is_downloadable(url: str):
     return True
 
 
-def download(url: str, destination: str):
+def download(url: str, destination: str, skip_existing: bool = True):
+    if skip_existing and os.path.exists(destination):
+        return
     request = requests.get(url, allow_redirects=True)
     with open(destination, 'wb') as outfile:
         outfile.write(request.content)
@@ -74,7 +78,7 @@ def main():
         pubs = load_json(domain)
         queue = as_download_list(pubs["entities"], args.count)
         for title, url in tqdm(queue, 'publication', total=args.count):
-            download(url, pattern.format(title))
+            download(url, pattern.format(title), not args.force)
 
 
 if __name__ == '__main__':
