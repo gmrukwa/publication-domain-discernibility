@@ -64,7 +64,7 @@ def as_downloadable(publication):
 def as_download_list(pubs, limit: int):
     parsed = (as_downloadable(pub) for pub in pubs)
     downloadable = ((title, url) for title, url in parsed if url)
-    return {title: url for (title, url), _ in zip(downloadable, range(limit))}
+    return (pub for pub, _ in zip(downloadable, range(limit)))
 
 
 def main():
@@ -75,8 +75,8 @@ def main():
         pattern = os.path.join(domain_dir(domain), '{0}.pdf')
         pubs = load_json(domain)
         queue = as_download_list(pubs["entities"], args.count)
-        for title in tqdm(queue, 'publication'):
-            download(queue[title], pattern.format(title))
+        for title, url in tqdm(queue, 'publication', total=args.count):
+            download(url, pattern.format(title))
 
 
 if __name__ == '__main__':
