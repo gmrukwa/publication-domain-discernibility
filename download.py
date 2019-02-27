@@ -21,9 +21,7 @@ def parse_args():
 def is_downloadable(url: str):
     try:
         h = requests.head(url, allow_redirects=True)
-    except requests.exceptions.TooManyRedirects:
-        return False
-    except requests.exceptions.SSLError:
+    except requests.exceptions.RequestException:
         return False
     header = h.headers
     content_type = header.get('content-type')
