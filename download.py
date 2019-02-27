@@ -49,7 +49,7 @@ _PDF_TYPE = 3
 def as_downloadable(publication):
     title = publication["Ti"]
     meta = json.loads(publication["E"])
-    sources = meta["S"]
+    sources = meta.get("S", [])
     for source in sources:
         if source["Ty"] == _PDF_TYPE and is_downloadable(source["U"]):
             return title, source["U"]
