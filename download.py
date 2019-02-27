@@ -23,6 +23,8 @@ def is_downloadable(url: str):
         h = requests.head(url, allow_redirects=True)
     except requests.exceptions.TooManyRedirects:
         return False
+    except requests.exceptions.SSLError:
+        return False
     header = h.headers
     content_type = header.get('content-type')
     if 'text' in content_type.lower():
