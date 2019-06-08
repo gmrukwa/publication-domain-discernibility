@@ -1,0 +1,8 @@
+md5: d21056247cfe3e93d1bf67a10539a32d
+wdir: .
+outs:
+- md5: 39e0f886241716e6a96e0c5fb4091d1e.dir
+  path: pubs
+  cache: true
+  metric: false
+  persist: false
