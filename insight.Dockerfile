@@ -29,8 +29,9 @@ COPY requirements.txt /
 RUN pip install --no-cache-dir -r /requirements.txt &&\
     rm /requirements.txt
 
-RUN pip install --no-cache-dir matplotlib plotly &&\
-    mkdir -p /root/.config/matplotlib/matplotlibrc &&\
+RUN pip install --no-cache-dir matplotlib plotly
+
+RUN mkdir -p /root/.config/matplotlib &&\
     echo "backend : Agg" > /root/.config/matplotlib/matplotlibrc
 
 VOLUME /app
