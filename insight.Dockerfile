@@ -11,6 +11,8 @@ COPY requirements.txt /
 
 RUN pip install --no-cache-dir -r /requirements.txt
 
+EXPOSE 8888
+
 RUN pip install --no-cache-dir jupyterlab
 
 RUN apt-get install -y curl &&\
