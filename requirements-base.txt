@@ -2,6 +2,7 @@ nltk
 numpy
 pandas
 pdftotext
+pytest
 requests
 scikit-learn
 scipy
