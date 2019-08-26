@@ -4,6 +4,8 @@ EXPOSE 8888
 
 RUN pip install --no-cache-dir jupyterlab
 
+RUN pip install --no-cache-dir dvc[all]
+
 RUN apt-get install -y curl &&\
     curl -sL https://deb.nodesource.com/setup_12.x | bash - &&\
     apt-get install -y nodejs &&\

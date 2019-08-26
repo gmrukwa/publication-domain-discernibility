@@ -1,5 +1,7 @@
 FROM python:3.6
 
+RUN pip install --no-cache-dir dvc[all]
+
 RUN apt-get update && apt-get install -qq \
     build-essential \
     libpoppler-cpp-dev \
