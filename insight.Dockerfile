@@ -29,7 +29,7 @@ COPY requirements.txt /
 RUN pip install --no-cache-dir -r /requirements.txt &&\
     rm /requirements.txt
 
-RUN python -c 'import nltk; nltk.download("stopwords")'
+RUN python -c 'import nltk; nltk.download("stopwords"); nltk.download("wordnet")'
 
 RUN pip install --no-cache-dir matplotlib plotly
 
