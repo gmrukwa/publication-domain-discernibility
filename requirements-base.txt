@@ -2,7 +2,7 @@ joblib
 nltk
 numpy
 pandas
-pdftotext
+pdfminer.six
 pytest
 requests
 scikit-learn
