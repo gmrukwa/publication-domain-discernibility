@@ -1,0 +1,8 @@
+md5: 66b2d9cc858389558842fe75fb0eff20
+wdir: ..
+outs:
+- md5: 215766383507958d88c918b7a1d47125.dir
+  path: data/json
+  cache: true
+  metric: false
+  persist: false
