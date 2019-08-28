@@ -1,0 +1,16 @@
+cmd: python convert.py --source data/pdf --destination data/txt
+wdir: ..
+deps:
+- path: data/pdf
+  md5: 3877e67418a5e9822522bbbe5502534c.dir
+- path: requirements.txt
+  md5: 8556a1fe90adc4891b84d6335848496a
+- path: convert.py
+  md5: 200ff2b6840b213d5af03bed6dc9f4d5
+outs:
+- path: data/txt
+  cache: true
+  metric: false
+  persist: false
+  md5: 62eb92304c0a26b64f61455398ef4004.dir
+md5: 20dbce86202cbdd3193efb99973e1b4d
