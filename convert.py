@@ -19,9 +19,12 @@ def parse_args():
 
 
 def convert_pdf(src: str, dst: str):
-    completed = subprocess.run(['pdf2txt.py', '-o', dst, src])
-    if completed.returncode:
-        logging.warning(f"{src} conversion failed.")
+    try:
+        completed = subprocess.run(['pdf2txt.py', '-o', dst, src], timeout=300)
+        if completed.returncode:
+            logging.warning(f"{src} conversion failed.")
+    except subprocess.TimeoutExpired:
+        logging.warning(f"{src} conversion timeout.")
 
 
 def prepare_destination(src: str, dst_root: str):
