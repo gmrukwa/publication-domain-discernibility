@@ -1,3 +1,4 @@
+import argparse
 from functools import partial
 import glob
 import os
@@ -178,10 +179,20 @@ def clean(pubs, min_chars: int=5000, min_words: int=1500,
     return long_enough
 
 
+def parse_args():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--source', help='path to directory with TXTs',
+                        required=True)
+    parser.add_argument('--output', help='DataFrame pkl destination path',
+                        required=True)
+    return parser.parse_args()
+
+
 def main():
-    pubs = read_all(os.path.join('data', 'pubs'))
+    args = parse_args()
+    pubs = read_all(args.source)
     pubs = clean(pubs, lazy=False)
-    with open(os.path.join('data', 'pubs-clean.pkl'), 'wb') as outfile:
+    with open(args.output, 'wb') as outfile:
         joblib.dump(pubs, outfile)
 
 
