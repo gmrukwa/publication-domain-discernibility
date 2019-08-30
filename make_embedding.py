@@ -62,8 +62,8 @@ def effect_size(first, second, axis=0):
 
 
 def characteristic_features(data, selector, n: int=5):
-    first = data[selector, :]
-    second = data[selector == 0, :]
+    first = data[selector, :].toarray()
+    second = data[selector == 0, :].toarray()
     d = effect_size(first, second)
     d_sort = np.argsort(d)
     top = d_sort[-n::-1]
