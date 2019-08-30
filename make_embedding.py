@@ -47,7 +47,7 @@ def load_json(fname):
 
 def save_json(obj, fname):
     with open(fname, 'w') as outfile:
-        json.dump(data, outfile, sort_keys=True, indent=2)
+        json.dump(obj, outfile, sort_keys=True, indent=2)
 
 
 def select_categories(data, categories):
