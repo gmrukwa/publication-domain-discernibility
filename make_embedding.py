@@ -20,6 +20,10 @@ def parse_args():
                         help='words destination')
     parser.add_argument('--N', default=5, type=int,
                         help='number of characteristic words')
+    parser.add_argument('--max-features', default=100000, type=int,
+                        help='the number of embedding features')
+    parser.add_argument('--ngram-length', default=3, type=int,
+                        help='the maximal length of n-gram')
     return parser.parse_args()
 
 
@@ -76,7 +80,8 @@ def main():
     data = load_data(args.source)
     categories = load_json(args.categories)
     data = select_categories(data, categories)
-    vectorizer = TfidfVectorizer(ngram_range=(1,3))
+    vectorizer = TfidfVectorizer(ngram_range=(1,args.ngram_length),
+                                 max_features=args.max_features)
     embedding = vectorizer.fit_transform(data.clean)
     save_data(embedding, args.embedding)
     words = vectorizer.get_feature_names()
