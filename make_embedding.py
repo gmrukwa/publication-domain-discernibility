@@ -27,12 +27,12 @@ def parse_args():
     return parser.parse_args()
 
 
-def load_data(fname):
+def load_pickle(fname):
     with open(fname, 'rb') as infile:
         return joblib.load(infile)
 
 
-def save_data(data, fname):
+def save_pickle(data, fname):
     with open(fname, 'wb') as outfile:
         joblib.dump(data, outfile)
 
@@ -77,13 +77,13 @@ def characteristic_features(data, selector, n: int=5):
 
 def main():
     args = parse_args()
-    data = load_data(args.source)
+    data = load_pickle(args.source)
     categories = load_json(args.categories)
     data = select_categories(data, categories)
     vectorizer = TfidfVectorizer(ngram_range=(1,args.ngram_length),
                                  max_features=args.max_features)
     embedding = vectorizer.fit_transform(data.clean)
-    save_data(embedding, args.embedding)
+    save_pickle(embedding, args.embedding)
     words = vectorizer.get_feature_names()
     characteristic_words = {}
     for domain in tqdm(categories):
