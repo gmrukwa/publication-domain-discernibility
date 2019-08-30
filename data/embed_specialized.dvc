@@ -1,0 +1,29 @@
+md5: 8c7891f5b8969aed4b3205a663fc1840
+cmd: python -u make_embedding.py --source data/clean.pkl --categories categories-specialized.json
+  --embedding data/specialized_embedding.pkl --vectorizer data/specialized_vectorizer.pkl
+  --words data/specialized_words.json --N 100 --max-features 100000 --ngram-length
+  3
+wdir: ..
+deps:
+- md5: 4c51a5847f37b2f456c70168eb3770fd
+  path: make_embedding.py
+- md5: 8556a1fe90adc4891b84d6335848496a
+  path: requirements.txt
+- md5: 8186627167e952ca3d1b7f2d09ba2af9
+  path: data/clean.pkl
+outs:
+- md5: 5ccd0dc0b3f4585c5e704d67c0e18040
+  path: data/specialized_embedding.pkl
+  cache: true
+  metric: false
+  persist: false
+- md5: e792409cceb4ebd3d870c7aa4c542047
+  path: data/specialized_vectorizer.pkl
+  cache: true
+  metric: false
+  persist: false
+- md5: 488113e54ac73e097997b0008f69ed7d
+  path: data/specialized_words.json
+  cache: true
+  metric: false
+  persist: false
