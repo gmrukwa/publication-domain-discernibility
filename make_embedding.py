@@ -76,7 +76,7 @@ def main():
     categories = load_json(args.categories)
     data = select_categories(data, categories)
     vectorizer = TfidfVectorizer(ngram_range=(1,3))
-    embedding = vectorizer.fit_transform(data)
+    embedding = vectorizer.fit_transform(data.clean)
     save_data(embedding, args.embedding)
     words = vectorizer.get_feature_names()
     characteristic_words = {}
