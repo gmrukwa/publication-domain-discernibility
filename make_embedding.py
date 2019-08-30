@@ -73,7 +73,7 @@ def characteristic_features(data, selector, n: int=5):
     second = data[selector == 0, :].toarray()
     d = effect_size(first, second)
     d_sort = np.argsort(d)
-    top = d_sort[-n::-1]
+    top = d_sort[:-n:-1]
     bot = d_sort[:n]
     return bot, top
 
@@ -88,7 +88,7 @@ def main():
     embedding = vectorizer.fit_transform(data.clean)
     save_pickle(vectorizer, args.vectorizer)
     save_pickle(embedding, args.embedding)
-    words = vectorizer.get_feature_names()
+    words = np.array(vectorizer.get_feature_names())
     del vectorizer
     gc.collect()
     characteristic_words = {}
@@ -96,8 +96,8 @@ def main():
         category = (data.domain == domain).ravel()
         bot, top = characteristic_features(
             embedding, category, n=args.N)
-        characteristic_words[f'{domain}_up'] = words[top]
-        characteristic_words[f'{domain}_down'] = words[bot]
+        characteristic_words[f'{domain}_up'] = list(words[top])
+        characteristic_words[f'{domain}_down'] = list(words[bot])
     save_json(characteristic_words, args.words)
 
 
