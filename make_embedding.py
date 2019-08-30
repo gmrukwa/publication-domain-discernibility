@@ -16,6 +16,8 @@ def parse_args():
                         help='categories source')
     parser.add_argument('--embedding', required=True,
                         help='embedding destination')
+    parser.add_argument('--vectorizer', required=True,
+                        help='vectorizer destination')
     parser.add_argument('--words', required=True,
                         help='words destination')
     parser.add_argument('--N', default=5, type=int,
@@ -83,6 +85,7 @@ def main():
     vectorizer = TfidfVectorizer(ngram_range=(1,args.ngram_length),
                                  max_features=args.max_features)
     embedding = vectorizer.fit_transform(data.clean)
+    save_pickle(vectorizer, args.vectorizer)
     save_pickle(embedding, args.embedding)
     words = vectorizer.get_feature_names()
     characteristic_words = {}
