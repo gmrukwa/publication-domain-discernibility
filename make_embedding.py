@@ -1,4 +1,5 @@
 import argparse
+import gc
 import json
 
 import joblib
@@ -88,6 +89,8 @@ def main():
     save_pickle(vectorizer, args.vectorizer)
     save_pickle(embedding, args.embedding)
     words = vectorizer.get_feature_names()
+    del vectorizer
+    gc.collect()
     characteristic_words = {}
     for domain in tqdm(categories):
         category = (data.domain == domain).ravel()
