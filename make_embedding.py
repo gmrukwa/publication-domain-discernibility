@@ -62,7 +62,8 @@ def effect_size(first, second, axis=0):
 
 
 def characteristic_features(data, selector, n: int=5):
-    first, second = data[selector], data[~selector]
+    first = data[selector, :]
+    second = data[selector == 0, :]
     d = effect_size(first, second)
     d_sort = np.argsort(d)
     top = d_sort[-n::-1]
@@ -81,7 +82,7 @@ def main():
     words = vectorizer.get_feature_names()
     characteristic_words = {}
     for domain in tqdm(categories):
-        category = data.domain == domain
+        category = (data.domain == domain).ravel()
         bot, top = characteristic_features(
             embedding, category, n=args.N)
         characteristic_words[f'{domain}_up'] = words[top]
