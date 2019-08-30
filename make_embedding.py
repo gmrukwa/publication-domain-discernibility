@@ -74,8 +74,7 @@ def main():
     args = parse_args()
     data = load_data(args.source)
     categories = load_json(args.categories)
-    selector = select_categories(data, categories)
-    data = data[selector]
+    data = select_categories(data, categories)
     vectorizer = TfidfVectorizer(ngram_range=(1,3))
     embedding = vectorizer.fit_transform(data)
     save_data(embedding, args.embedding)
