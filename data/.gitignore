@@ -2,3 +2,6 @@
 /pdf
 /txt
 /clean.pkl
+/general_embedding.pkl
+/general_vectorizer.pkl
+/general_words.json
