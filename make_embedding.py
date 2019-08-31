@@ -1,10 +1,10 @@
 import argparse
+from enum import Enum
 import gc
 import json
 
 import joblib
 import numpy as np
-import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
 from tqdm import tqdm
 
@@ -57,6 +57,15 @@ def select_categories(data, categories):
     return data[selection].copy()
 
 
+class EffectSize(float, Enum):
+    VERY_SMALL = 0.01
+    SMALL = 0.2
+    MEDIUM = 0.5
+    LARGE = 0.8
+    VERY_LARGE = 1.2
+    HUGE = 2.0
+
+
 def effect_size(first, second, axis=0):
     mu1 = first.mean(axis=axis)
     mu2 = second.mean(axis=axis)
@@ -72,10 +81,14 @@ def characteristic_features(data, selector, n: int=5):
     first = data[selector, :].toarray()
     second = data[selector == 0, :].toarray()
     d = effect_size(first, second)
-    d_sort = np.argsort(d)
-    top = d_sort[:-n:-1]
-    bot = d_sort[:n]
-    return bot, top
+    d_ind_sort = np.argsort(-d)
+    d_sort = d[d_ind_sort]
+    indices = {}
+    for thr in EffectSize:
+        stronger = d_sort > thr
+        indices[thr.name] = d_ind_sort[stronger]
+    indices['TOP'] = d_ind_sort[:n]
+    return indices
 
 
 def main():
@@ -94,10 +107,10 @@ def main():
     characteristic_words = {}
     for domain in tqdm(categories):
         category = (data.domain == domain).ravel()
-        bot, top = characteristic_features(
-            embedding, category, n=args.N)
-        characteristic_words[f'{domain}_up'] = list(words[top])
-        characteristic_words[f'{domain}_down'] = list(words[bot])
+        indices = characteristic_features(embedding, category, n=args.N)
+        characteristic_words[domain] = {}
+        for thr, ind in indices.items():
+            characteristic_words[domain][thr] = list(words[ind])
     save_json(characteristic_words, args.words)
 
 
