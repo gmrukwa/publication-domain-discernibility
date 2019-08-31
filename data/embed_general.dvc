@@ -1,10 +1,10 @@
-md5: 571000bff0d680b59b50895fdafbea15
+md5: 5f283617d37e16efc9648a64dda939f9
 cmd: python -u make_embedding.py --source data/clean.pkl --categories categories-general.json
   --embedding data/general_embedding.pkl --vectorizer data/general_vectorizer.pkl
   --words data/general_words.json --N 100 --max-features 100000 --ngram-length 3
 wdir: ..
 deps:
-- md5: 4c51a5847f37b2f456c70168eb3770fd
+- md5: c010c6e06828dd5aa303a74ecc28fc55
   path: make_embedding.py
 - md5: 8556a1fe90adc4891b84d6335848496a
   path: requirements.txt
@@ -16,12 +16,12 @@ outs:
   cache: true
   metric: false
   persist: false
-- md5: 79b73326e3faba8ac8b50a0cab117c68
+- md5: 28947c440102fb59c63084502fb0c203
   path: data/general_vectorizer.pkl
   cache: true
   metric: false
   persist: false
-- md5: 609b9a64e6bdda58734e353d547b6123
+- md5: 9e21d91d72f49961b13a18d7edfab02f
   path: data/general_words.json
   cache: true
   metric: false
