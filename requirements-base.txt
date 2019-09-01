@@ -1,3 +1,4 @@
+git+https://github.com/rossant/ipycache
 joblib
 nltk
 numpy
@@ -7,4 +8,5 @@ pytest
 requests
 scikit-learn
 scipy
+statsmodels
 tqdm
