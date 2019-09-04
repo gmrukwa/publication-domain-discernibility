@@ -1,1 +1,12 @@
-pdftotext
+git+https://github.com/rossant/ipycache
+joblib
+nltk
+numpy
+pandas
+pdfminer.six
+pytest
+requests
+scikit-learn
+scipy
+statsmodels
+tqdm

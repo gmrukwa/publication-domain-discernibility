@@ -1,0 +1,8 @@
+md5: 1e9287c40e97579212f5607979e8488b
+wdir: ..
+outs:
+- md5: 3877e67418a5e9822522bbbe5502534c.dir
+  path: data/pdf
+  cache: true
+  metric: false
+  persist: false

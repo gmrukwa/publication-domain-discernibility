@@ -1,0 +1,10 @@
+/json
+/pdf
+/txt
+/clean.pkl
+/general_embedding.pkl
+/general_vectorizer.pkl
+/general_words.json
+/specialized_embedding.pkl
+/specialized_vectorizer.pkl
+/specialized_words.json

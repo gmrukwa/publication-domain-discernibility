@@ -1,0 +1,14 @@
+cmd: python clean.py --source data/txt --output data/clean.pkl
+wdir: ..
+deps:
+- path: data/txt
+  md5: 62eb92304c0a26b64f61455398ef4004.dir
+- path: clean.py
+  md5: 23a410c7e389aeb54861dec91103a56a
+outs:
+- path: data/clean.pkl
+  cache: true
+  metric: false
+  persist: false
+  md5: 8186627167e952ca3d1b7f2d09ba2af9
+md5: 6c6edf2395e034f857fd09bfbbd016b6

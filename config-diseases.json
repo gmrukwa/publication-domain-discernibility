@@ -7,6 +7,10 @@
     "TIMEOUT": 1000
   },
   "DOMAINS": [
-    "cancer"
+    "cancer",
+    "neurodegenerative",
+    "psychiatric",
+    "allergies",
+    "cardiovascular"
   ]
 }

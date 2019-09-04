@@ -108,3 +108,7 @@ venv.bak/
 
 # PyCharm
 .idea/
+
+# project related
+data/
+.dvc/
